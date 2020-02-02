@@ -1,9 +1,40 @@
-var express = require("express");
-var aplicacion = express();
+const express = require("express");
+const app = express();
 
-aplicacion.get("/", inicio)
-function inicio(peticion, resultado)
-{
-  resultado.send( "este es el<strong>home</strong>") 
-}  
-aplicacion.listen(3000);
+
+//const routes = require("./routes");
+
+
+//settings 
+
+app.set('appName', 'primer server');
+app.set('views', __dirname + '/views');
+app.set('views angine', 'ejs')
+
+//middlewares
+
+//router
+
+app.get('/', (req, res) => {
+	res.render('index.ejs', { title: 'Primera Pagina'});
+    next();
+});
+
+
+
+app.get('./navigation', (req, res) => {
+	res.render('contact.ejs', { title: 'Primera Pagina' });
+
+});
+
+
+app.get('./contact', (req, res) => {
+	res.render('contact.ejs', { title: 'Primera Pagina' });
+
+});
+
+
+app.listen(8080, function () {
+	console.log('FUNCIONA');
+	console.log('Nombre de la app: ', app.get('appName'))
+});
